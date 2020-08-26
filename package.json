@@ -1,0 +1,46 @@
+{
+  "name": "@authnomicon/fido2",
+  "version": "0.0.0",
+  "description": "FIDO2 components for the Authnomicon project.",
+  "keywords": [
+    "fido2"
+  ],
+  "author": {
+    "name": "Jared Hanson",
+    "email": "jaredhanson@gmail.com",
+    "url": "http://www.jaredhanson.net/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/authnomicon/fido2.git"
+  },
+  "bugs": {
+    "url": "http://github.com/authnomicon/fido2/issues"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib",
+  "namespace": "org.authnomicon/fido2",
+  "components": [
+    "webauthn/attestation",
+    "webauthn/authenticatordata"
+  ],
+  "directories": {
+    "com": "com"
+  },
+  "dependencies": {
+    "cbor": "^5.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+  }
+}
