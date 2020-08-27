@@ -1,5 +1,5 @@
 exports = module.exports = function(IoC, AuthenticatorData) {
-  var attestation = require('../../lib/webauthn/attestation');
+  var attestation = require('../lib/attestation');
   
   return Promise.resolve({})
     .then(function(registry) {
