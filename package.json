@@ -1,9 +1,10 @@
 {
-  "name": "@authnomicon/fido2",
+  "name": "@authnomicon/webauthn",
   "version": "0.0.0",
-  "description": "FIDO2 components for the Authnomicon project.",
+  "description": "WebAuthn components for the Authnomicon project.",
   "keywords": [
-    "fido2"
+    "fido2",
+    "webauthn"
   ],
   "author": {
     "name": "Jared Hanson",
@@ -12,10 +13,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/authnomicon/fido2.git"
+    "url": "git://github.com/authnomicon/webauthn.git"
   },
   "bugs": {
-    "url": "http://github.com/authnomicon/fido2/issues"
+    "url": "http://github.com/authnomicon/webauthn/issues"
   },
   "license": "MIT",
   "licenses": [
@@ -25,10 +26,10 @@
     }
   ],
   "main": "./lib",
-  "namespace": "org.authnomicon/fido2",
+  "namespace": "org.authnomicon/webauthn",
   "components": [
-    "webauthn/attestation",
-    "webauthn/authenticatordata"
+    "attestation",
+    "authenticatordata"
   ],
   "directories": {
     "com": "com"
