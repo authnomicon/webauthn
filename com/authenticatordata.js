@@ -1,6 +1,9 @@
 exports = module.exports = function() {
-  return require('../lib/authenticatordata');
+  var webauthn = require('passport-webauthentication').webauthn;
+  
+  return webauthn.AuthenticatorData;
 };
 
+exports['@singleton'] = true;
 exports['@implements'] = 'http://i.authnomicon.org/webauthn/AuthenticatorData';
 exports['@require'] = [];

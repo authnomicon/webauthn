@@ -1,5 +1,5 @@
 exports = module.exports = function(IoC, AuthenticatorData) {
-  var attestation = require('../lib/attestation');
+  var webauthn = require('passport-webauthentication').webauthn;
   
   return Promise.resolve({})
     .then(function(registry) {
@@ -18,7 +18,7 @@ exports = module.exports = function(IoC, AuthenticatorData) {
     .then(function(registry) {
       return {
         parse: function(buffer, parseAuthData, parseAttStmt) {
-          var ao = attestation.parse(buffer);
+          var ao = webauthn.Attestation.parse(buffer);
           if (parseAuthData) {
             ao.authData = AuthenticatorData.parse(ao.authData);
           }
@@ -29,6 +29,7 @@ exports = module.exports = function(IoC, AuthenticatorData) {
     });
 };
 
+exports['@singleton'] = true;
 exports['@implements'] = 'http://i.authnomicon.org/webauthn/Attestation';
 exports['@require'] = [
   '!container',
