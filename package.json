@@ -30,8 +30,8 @@
   "components": [
     "attestation",
     "authenticatordata",
-    "http/service",
-    "http/scheme"
+    "service",
+    "scheme"
   ],
   "directories": {
     "com": "com"
