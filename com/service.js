@@ -1,18 +1,22 @@
 /**
  */
-exports = module.exports = function(registerHandler, verifyHandler) {
+exports = module.exports = function(challengeHandler, registerHandler, verifyHandler) {
   var express = require('express');
   
   var router = new express.Router();
-  router.post('/', verifyHandler);
-  router.post('/registration', registerHandler);
+  router.post('/challenge', challengeHandler);
+  
+  //router.post('/', verifyHandler);
+  //router.post('/registration', registerHandler);
   
   return router;
 };
 
-exports['@provides'] = 'http://i.bixbyjs.org/http/Service';
-exports['@path'] = '/webauthn';
+exports['@implements'] = 'http://i.bixbyjs.org/http/Service';
+exports['@path'] = '/login/public-key';
 exports['@require'] = [
-  './handlers/register',
-  './handlers/verify'
+  './handlers/challenge'
+  
+  //'./handlers/register',
+  //'./handlers/verify'
 ];

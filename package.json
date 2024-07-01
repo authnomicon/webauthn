@@ -30,6 +30,7 @@
   "components": [
     "attestation",
     "authenticatordata",
+    "challengestore",
     "service",
     "scheme"
   ],
@@ -37,10 +38,11 @@
     "com": "com"
   },
   "dependencies": {
+    "base64url": "^3.0.1",
     "cbor": "^5.1.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "passport-fido2-webauthn": "^0.1.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": "*"
   },
