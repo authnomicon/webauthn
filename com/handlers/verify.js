@@ -3,20 +3,23 @@
  */
 exports = module.exports = function(scheme, authenticator) {
   
-  
-  function foo(req, res, next) {
-    console.log('VERIFY IT!');
-    console.log(req.headers);
-    console.log(req.body);
+  function resume(req, res, next) {
+    // TODO: figure out how to do redirects here from JSON responses with state
     next();
   }
   
-  function go(req, res, next) {
+  function redirect(req, res, next) {
     console.log('AUTHED!');
     console.log(req.user);
+    
+    // TODO: figure out how to do redirects here from JSON responses with state
+    
+    res.json({ ok: true, location: '/' });
   }
   
-  function goErr(err, req, res, next) {
+  // TODO: error handler
+  
+  function errorHandler(err, req, res, next) {
     console.log('AUTHED ERR!');
     console.log(err);
     console.log(req.session.messages);
@@ -25,13 +28,13 @@ exports = module.exports = function(scheme, authenticator) {
   
   return [
     require('body-parser').json(),
-    foo,
     authenticator.authenticate(scheme, { 
       failureMessage: true,
       failWithError: true
     }),
-    go,
-    goErr
+    resume,
+    redirect,
+    errorHandler
   ];
 };
 
