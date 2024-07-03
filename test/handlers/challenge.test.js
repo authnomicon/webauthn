@@ -25,16 +25,16 @@ describe('handlers/challenge', function() {
   
   describe('handler', function() {
     
-    it.skip('should generate challenge', function(done) {
+    it('should generate challenge for authentication', function(done) {
       var store = new Object();
       store.challenge = sinon.stub().yieldsAsync(null, Buffer.from([21, 31, 105]))
-
 
       var handler = factory(store);
       
       chai.express.use(handler)
         .request(function(req, res) {
           req.method = 'POST';
+          req.body = {};
         })
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
@@ -51,9 +51,8 @@ describe('handlers/challenge', function() {
     
     it('should generate challenge for registration', function(done) {
       var store = new Object();
-      store.challenge = sinon.stub().yieldsAsync(null, Buffer.from([21, 31, 105]))
-
-
+      store.challenge = sinon.stub().yieldsAsync(null, Buffer.from([21, 31, 105]));
+      
       var handler = factory(store);
       
       chai.express.use(handler)
