@@ -60,7 +60,8 @@ describe('handlers/challenge', function() {
           req.method = 'POST';
           req.body = {
             type: 'webauthn.create',
-            username: 'alex.mueller@example.com'
+            username: 'alexm',
+            name: 'Alex Müller'
           }
         })
         .finish(function() {
@@ -71,8 +72,8 @@ describe('handlers/challenge', function() {
           delete ctx.user.id;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'newalice',
-              displayName: 'New Alice'
+              name: 'alexm',
+              displayName: 'Alex Müller'
             }
           });
           
@@ -84,8 +85,8 @@ describe('handlers/challenge', function() {
           expect(user.id).to.equal(base64url.encode(handle));
           delete user.id;
           expect(user).to.deep.equal({
-            name: 'newalice',
-            displayName: 'New Alice'
+            name: 'alexm',
+            displayName: 'Alex Müller'
           });
           done();
         })

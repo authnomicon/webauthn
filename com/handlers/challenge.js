@@ -16,11 +16,24 @@ exports = module.exports = function(store) {
       handle = uuid({}, handle);
       var ctx = {
         user: {
-          id: handle,
-          name: 'newalice', //req.body.username,
-          displayName: 'New Alice', // req.body.name
+          id: handle
         }
       };
+      
+      
+      if (req.body.username) { ctx.user.name = req.body.username; }
+      if (!ctx.user.name && req.body.email) {
+        ctx.user.name = req.body.email;
+      }
+      
+      if (req.body.name) { ctx.user.displayName = req.body.name; }
+      if (!ctx.user.displayName && req.body.given_name) {
+        ctx.user.displayName = req.body.given_name;
+        if (req.body.family_name) {
+          ctx.user.displayName += (' ' + req.body.family_name);
+        }
+      }
+      
       
       store.challenge(req, ctx, function(err, challenge) {
         if (err) { return next(err); }
