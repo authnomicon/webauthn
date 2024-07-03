@@ -20,7 +20,6 @@ exports = module.exports = function(store) {
         }
       };
       
-      
       if (req.body.username) { ctx.user.name = req.body.username; }
       if (!ctx.user.name && req.body.email) {
         ctx.user.name = req.body.email;
@@ -33,7 +32,6 @@ exports = module.exports = function(store) {
           ctx.user.displayName += (' ' + req.body.family_name);
         }
       }
-      
       
       store.challenge(req, ctx, function(err, challenge) {
         if (err) { return next(err); }
