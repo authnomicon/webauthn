@@ -41,9 +41,11 @@
   },
   "dependencies": {
     "base64url": "^3.0.1",
+    "body-parser": "^1.20.2",
     "cbor": "^5.1.0",
     "express": "^4.17.1",
-    "passport-fido2-webauthn": "^0.1.0"
+    "passport-fido2-webauthn": "^0.1.0",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "chai": "^4.3.4",
