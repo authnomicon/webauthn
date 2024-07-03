@@ -45,7 +45,14 @@ describe('handlers/verify', function() {
       chai.express.use(handler)
         .request(function(req, res) {
           req.method = 'POST';
-          req.body = {};
+          req.body = {
+            id: '...',
+            response: {
+              clientDataJSON: '...',
+              authenticatorData: '...',
+              signature: '...'
+            }
+          };
         })
         .finish(function() {
           expect(this.req.user).to.deep.equal({
@@ -59,12 +66,11 @@ describe('handlers/verify', function() {
             ok: true,
             location: '/'
           });
-          //expect(this.getHeader('Location')).to.equal('/logged-in');
           done();
         })
         .listen();
     }); // should redirect
     
-  });
+  }); // handler
   
 });
