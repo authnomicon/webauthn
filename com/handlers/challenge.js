@@ -43,6 +43,8 @@ exports = module.exports = function(store) {
         res.json({ user: user, challenge: base64url.encode(challenge) });
       });
     }
+    
+    // TODO: invalid type error
   }
   
   // TODO: JSON error handler
