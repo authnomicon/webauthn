@@ -29,7 +29,11 @@ exports = module.exports = function(store, keys, directory) {
       
         var key = {
           id: id,
-          publicKey: publicKey
+          publicKey: publicKey,
+          signCount: signCount,
+          backupEligible: flags.backupEligible,
+          backedUp: flags.backedUp,
+          transports: transports
         };
         keys.add(key, user, function(err, key) {
           if (err) { return cb(err); }

@@ -100,7 +100,11 @@ describe('scheme', function() {
           });
           expect(keys.add).to.have.been.calledOnceWith({
             id: 'BA44712732CE',
-            publicKey: '-----BEGIN PUBLIC KEY-----'
+            publicKey: '-----BEGIN PUBLIC KEY-----',
+            signCount: 0,
+            backupEligible: undefined,
+            backedUp: undefined,
+            transports: [ 'internal' ]
           }, {
             id: '248289761001',
             username: 'alexm'
