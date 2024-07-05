@@ -73,7 +73,7 @@ describe('handlers/challenge', function() {
           expect(ctx).to.deep.equal({
             user: {
               username: 'alexm',
-              name: 'Alex Müller'
+              displayName: 'Alex Müller'
             }
           });
           
@@ -116,8 +116,8 @@ describe('handlers/challenge', function() {
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'Alex Müller',
-              email: 'alex.mueller@example.com'
+              displayName: 'Alex Müller',
+              emails: [ { value: 'alex.mueller@example.com' } ]
             }
           });
           
@@ -162,8 +162,8 @@ describe('handlers/challenge', function() {
           expect(ctx).to.deep.equal({
             user: {
               username: 'alexm',
-              name: 'Alex Müller',
-              email: 'alex.mueller@example.com'
+              displayName: 'Alex Müller',
+              emails: [ { value: 'alex.mueller@example.com' } ]
             }
           });
           
@@ -207,7 +207,9 @@ describe('handlers/challenge', function() {
           expect(ctx).to.deep.equal({
             user: {
               username: 'alexm',
-              given_name: 'Alex'
+              name: {
+                givenName: 'Alex'
+              }
             }
           });
           
@@ -252,8 +254,10 @@ describe('handlers/challenge', function() {
           expect(ctx).to.deep.equal({
             user: {
               username: 'alexm',
-              given_name: 'Alex',
-              family_name: 'Müller'
+              name: {
+                familyName: 'Müller',
+                givenName: 'Alex'
+              }
             }
           });
           
@@ -299,9 +303,11 @@ describe('handlers/challenge', function() {
           expect(ctx).to.deep.equal({
             user: {
               username: 'alexm',
-              name: 'Alex M.',
-              given_name: 'Alex',
-              family_name: 'Müller'
+              displayName: 'Alex M.',
+              name: {
+                familyName: 'Müller',
+                givenName: 'Alex'
+              }
             }
           });
           

@@ -1,6 +1,5 @@
 var base64url = require('base64url');
 var uuid = require('uuid').v4;
-var merge = require('utils-merge');
 
 exports = module.exports = function(store) {
   
@@ -18,12 +17,18 @@ exports = module.exports = function(store) {
       var handle = Buffer.alloc(16);
       handle = uuid({}, handle);
       
-      var data = {}
-      merge(data, req.body);
-      data.handle = handle.toString('base64');
-      delete data.type;
+      var user = {}
+      user.handle = handle.toString('base64');
+      if (req.body.username) { user.username = req.body.username; }
+      if (req.body.name) { user.displayName = req.body.name; }
+      if (req.body.family_name) { (user.name = user.name || {}).familyName = req.body.family_name; }
+      if (req.body.given_name) { (user.name = user.name || {}).givenName = req.body.given_name; }
+      if (req.body.middle_name) { (user.name = user.name || {}).middleName = req.body.middle_name; }
+      if (req.body.email) {
+        user.emails = [ { value: req.body.email } ];
+      };
       
-      store.challenge(req, { user: data }, function(err, challenge) {
+      store.challenge(req, { user: user }, function(err, challenge) {
         if (err) { return next(err); }
         
         var user = {
