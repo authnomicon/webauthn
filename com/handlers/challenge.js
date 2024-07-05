@@ -20,7 +20,7 @@ exports = module.exports = function(store) {
       
       var data = {}
       merge(data, req.body);
-      data.handle = handle;
+      data.handle = handle.toString('base64');
       delete data.type;
       
       store.challenge(req, { user: data }, function(err, challenge) {

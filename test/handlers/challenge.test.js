@@ -67,8 +67,8 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.handle;
+          expect(ctx.user.handle).to.be.a('string');
+          var handle = Buffer.from(ctx.user.handle, 'base64');
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
@@ -111,8 +111,8 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.handle;
+          expect(ctx.user.handle).to.be.a('string');
+          var handle = Buffer.from(ctx.user.handle, 'base64');
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
@@ -156,8 +156,8 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.handle;
+          expect(ctx.user.handle).to.be.a('string');
+          var handle = Buffer.from(ctx.user.handle, 'base64');
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
@@ -201,8 +201,8 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.handle;
+          expect(ctx.user.handle).to.be.a('string');
+          var handle = Buffer.from(ctx.user.handle, 'base64');
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
@@ -246,8 +246,8 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.handle;
+          expect(ctx.user.handle).to.be.a('string');
+          var handle = Buffer.from(ctx.user.handle, 'base64');
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
@@ -293,8 +293,8 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.handle;
+          expect(ctx.user.handle).to.be.a('string');
+          var handle = Buffer.from(ctx.user.handle, 'base64');
           delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
