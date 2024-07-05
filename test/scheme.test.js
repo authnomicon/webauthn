@@ -67,6 +67,54 @@ describe('scheme', function() {
     
     describe('register', function() {
       
+      it('should register user and key', function(done) {
+        var store = new Object();
+        var keys = new Object();
+        keys.add = sinon.stub().yieldsAsync(null, { publicKey: '-----BEGIN PUBLIC KEY-----' });
+        var directory = new Object();
+        directory.create = sinon.stub().yieldsAsync(null, { id: '248289761001', username: 'alexm' });
+      
+        var StrategySpy = sinon.spy(Strategy);
+        var factory = $require('../com/scheme', {
+          'passport-fido2-webauthn': { Strategy: StrategySpy }
+        });
+        
+        var scheme = factory(store, keys, directory);
+      
+      
+        var user = {
+          id: Buffer.from([21, 31, 105]),
+          name: 'alexm',
+          displayName: 'Alex Müller'
+        }
+      
+        var register = StrategySpy.args[0][2];
+        register(user, 'BA44712732CE', '-----BEGIN PUBLIC KEY-----', null, null, null, function(err, user, info) {
+          if (err) { return done(err); }
+          
+          
+          expect(directory.create).to.have.been.calledOnceWith({
+            handle: Buffer.from([21, 31, 105]),
+            name: {
+              givenName: 'Alice'
+            }
+          });
+          expect(keys.add).to.have.been.calledOnceWith({
+            id: 'BA44712732CE',
+            publicKey: '-----BEGIN PUBLIC KEY-----'
+          }, {
+            id: '248289761001',
+            username: 'alexm'
+          });
+          expect(user).to.deep.equal({
+            id: '248289761001',
+            username: 'alexm'
+          });
+          expect(info).to.be.undefined;
+          done();
+        });
+      }); // should register user and key
+      
     }); // register
     
   }); // Strategy

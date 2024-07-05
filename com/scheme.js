@@ -57,12 +57,15 @@ exports = module.exports = function(store, keys, directory) {
       directory.create(u, function(err, user) {
         console.log('CREATED USER: ');
         console.log(err);
+        console.log(key)
         console.log(user);
       
         keys.add(key, user, function(err, key) {
           console.log('CREATED KEY: ');
           console.log(err);
           console.log(key);
+        
+          return cb(null, user);
         
         });
       });

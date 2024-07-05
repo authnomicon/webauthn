@@ -14,6 +14,8 @@ exports = module.exports = function(store) {
     } else if (type == 'webauthn.create') {
       var handle = Buffer.alloc(16);
       handle = uuid({}, handle);
+      
+      // TODO: preserve the body input as context here, so it can be registered appropriately
       var ctx = {
         user: {
           id: handle
