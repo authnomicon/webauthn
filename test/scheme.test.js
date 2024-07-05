@@ -83,21 +83,20 @@ describe('scheme', function() {
       
       
         var user = {
-          id: Buffer.from([21, 31, 105]),
-          name: 'alexm',
+          handle: '7ypGnMPYQn2UnzE7Z+Dsgw==',
+          username: 'alexm',
           displayName: 'Alex Müller'
         }
       
         var register = StrategySpy.args[0][2];
-        register(user, 'BA44712732CE', '-----BEGIN PUBLIC KEY-----', null, null, null, function(err, user, info) {
+        register(user, 'BA44712732CE', '-----BEGIN PUBLIC KEY-----', { userPresent: true, userVerified: false }, 0, [ 'internal' ], function(err, user, info) {
           if (err) { return done(err); }
           
           
           expect(directory.create).to.have.been.calledOnceWith({
-            handle: Buffer.from([21, 31, 105]),
-            name: {
-              givenName: 'Alice'
-            }
+            handle: Buffer.from([0xef, 0x2a, 0x46, 0x9c, 0xc3, 0xd8, 0x42, 0x7d, 0x94, 0x9f, 0x31, 0x3b, 0x67, 0xe0, 0xec, 0x83]),
+            username: 'alexm',
+            displayName: 'Alex Müller'
           });
           expect(keys.add).to.have.been.calledOnceWith({
             id: 'BA44712732CE',

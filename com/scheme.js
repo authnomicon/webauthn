@@ -22,19 +22,15 @@ exports = module.exports = function(store, keys, directory) {
       });
     },
     function register(user, id, publicKey, flags, signCount, transports, cb) {
-      var u = {
-        handle: user.id,
-        name: { givenName: 'Alice' } // TODO: user properties from user
-      }
+      user.handle = Buffer.from(user.handle, 'base64');
       
-      directory.create(u, function(err, user) {
+      directory.create(user, function(err, user) {
         if (err) { return cb(err); }
       
         var key = {
           id: id,
           publicKey: publicKey
         };
-      
         keys.add(key, user, function(err, key) {
           if (err) { return cb(err); }
           return cb(null, user);
