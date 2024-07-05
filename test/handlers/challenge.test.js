@@ -67,13 +67,13 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.id).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.id;
-          delete ctx.user.id;
+          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
+          var handle = ctx.user.handle;
+          delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'alexm',
-              displayName: 'Alex Müller'
+              username: 'alexm',
+              name: 'Alex Müller'
             }
           });
           
@@ -111,13 +111,13 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.id).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.id;
-          delete ctx.user.id;
+          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
+          var handle = ctx.user.handle;
+          delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'alex.mueller@example.com',
-              displayName: 'Alex Müller'
+              name: 'Alex Müller',
+              email: 'alex.mueller@example.com'
             }
           });
           
@@ -156,13 +156,14 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.id).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.id;
-          delete ctx.user.id;
+          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
+          var handle = ctx.user.handle;
+          delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'alexm',
-              displayName: 'Alex Müller'
+              username: 'alexm',
+              name: 'Alex Müller',
+              email: 'alex.mueller@example.com'
             }
           });
           
@@ -200,13 +201,13 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.id).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.id;
-          delete ctx.user.id;
+          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
+          var handle = ctx.user.handle;
+          delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'alexm',
-              displayName: 'Alex'
+              username: 'alexm',
+              given_name: 'Alex'
             }
           });
           
@@ -245,13 +246,14 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.id).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.id;
-          delete ctx.user.id;
+          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
+          var handle = ctx.user.handle;
+          delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'alexm',
-              displayName: 'Alex Müller'
+              username: 'alexm',
+              given_name: 'Alex',
+              family_name: 'Müller'
             }
           });
           
@@ -291,13 +293,15 @@ describe('handlers/challenge', function() {
         .finish(function() {
           expect(store.challenge).to.have.been.calledOnceWith(this.req);
           var ctx = store.challenge.getCall(0).args[1];
-          expect(ctx.user.id).to.be.an.instanceOf(Buffer);
-          var handle = ctx.user.id;
-          delete ctx.user.id;
+          expect(ctx.user.handle).to.be.an.instanceOf(Buffer);
+          var handle = ctx.user.handle;
+          delete ctx.user.handle;
           expect(ctx).to.deep.equal({
             user: {
-              name: 'alexm',
-              displayName: 'Alex M.'
+              username: 'alexm',
+              name: 'Alex M.',
+              given_name: 'Alex',
+              family_name: 'Müller'
             }
           });
           

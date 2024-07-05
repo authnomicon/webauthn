@@ -1,7 +1,10 @@
 var base64url = require('base64url');
 var uuid = require('uuid').v4;
+var merge = require('utils-merge');
 
 exports = module.exports = function(store) {
+  
+  // TODO: validate body
   
   function challenge(req, res, next) {
     var type = req.body.type || 'webauthn.get';
@@ -15,33 +18,28 @@ exports = module.exports = function(store) {
       var handle = Buffer.alloc(16);
       handle = uuid({}, handle);
       
-      // TODO: preserve the body input as context here, so it can be registered appropriately
-      var ctx = {
-        user: {
-          id: handle
-        }
-      };
+      var data = {}
+      merge(data, req.body);
+      data.handle = handle;
+      delete data.type;
       
-      if (req.body.username) { ctx.user.name = req.body.username; }
-      if (!ctx.user.name && req.body.email) {
-        ctx.user.name = req.body.email;
-      }
-      
-      if (req.body.name) { ctx.user.displayName = req.body.name; }
-      if (!ctx.user.displayName && req.body.given_name) {
-        ctx.user.displayName = req.body.given_name;
-        if (req.body.family_name) {
-          ctx.user.displayName += (' ' + req.body.family_name);
-        }
-      }
-      
-      store.challenge(req, ctx, function(err, challenge) {
+      store.challenge(req, { user: data }, function(err, challenge) {
         if (err) { return next(err); }
+        
         var user = {
-          id: base64url.encode(ctx.user.id),
-          name: ctx.user.name,
-          displayName: ctx.user.displayName
+          id: base64url.encode(handle)
         };
+        if (req.body.username) { user.name = req.body.username; }
+        if (!user.name && req.body.email) {
+          user.name = req.body.email;
+        }
+        if (req.body.name) { user.displayName = req.body.name; }
+        if (!user.displayName && req.body.given_name) {
+          user.displayName = req.body.given_name;
+          if (req.body.family_name) {
+            user.displayName += (' ' + req.body.family_name);
+          }
+        }
         res.json({ user: user, challenge: base64url.encode(challenge) });
       });
     }
