@@ -2,10 +2,10 @@ var express = require('express');
 
 /**
  */
-exports = module.exports = function(challengeHandler, verifyHandler, registerHandler) {
+exports = module.exports = function(verifyHandler, challengeHandler, registerHandler) {
   var router = new express.Router();
-  router.post('/challenge', challengeHandler);
   router.post('/', verifyHandler);
+  router.post('/challenge', challengeHandler);
   
   //router.post('/', verifyHandler);
   //router.post('/registration', registerHandler);
@@ -16,8 +16,8 @@ exports = module.exports = function(challengeHandler, verifyHandler, registerHan
 exports['@implements'] = 'http://i.bixbyjs.org/http/Service';
 exports['@path'] = '/login/public-key';
 exports['@require'] = [
-  './handlers/challenge',
-  './handlers/verify'
+  './handlers/verify',
+  './handlers/challenge'
   
   //'./handlers/register',
   //'./handlers/verify'

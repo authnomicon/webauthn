@@ -12,10 +12,10 @@ describe('service', function() {
   });
   
   it('should create service', function() {
-    function challengeHandler() {};
     function verifyHandler() {};
+    function challengeHandler() {};
   
-    var service = factory(challengeHandler, verifyHandler);
+    var service = factory(verifyHandler, challengeHandler);
     
     expect(service).to.be.a('function');
     expect(service.length).to.equal(3);
